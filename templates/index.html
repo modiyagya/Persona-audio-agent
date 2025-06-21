@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Beautiful TTS App</title>
+ <style>
+ body {
+ font-family: 'Arial', sans-serif;
+ background-color: #f4f4f4;
+ margin: 0;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ }
+
+ .container {
+ background-color: #fff;
+ padding: 40px;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ text-align: center;
+ width: 90%;
+ max-width: 600px;
+ }
+
+ h1 {
+ color: #333;
+ margin-bottom: 30px;
+ }
+
+ .form-group {
+ margin-bottom: 20px;
+ text-align: left;
+ }
+
+ label {
+ display: block;
+ margin-bottom: 8px;
+ font-weight: bold;
+ color: #555;
+ }
+
+ textarea {
+ width: 100%;
+ padding: 12px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ box-sizing: border-box;
+ resize: vertical;
+ font-size: 1rem;
+ }
+
+ button {
+ background-color: #5cb85c;
+ color: white;
+ padding: 12px 20px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ font-size: 1.1rem;
+ transition: background-color 0.3s ease;
+ }
+
+ button:hover {
+ background-color: #4cae4c;
+ }
+
+ .output-section {
+ margin-top: 30px;
+ text-align: left;
+ }
+
+ .output-section h2 {
+ color: #333;
+ margin-bottom: 15px;
+ }
+
+ .output-section audio {
+ width: 100%;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <h1>TTS App</h1>
+ <form action="#" onsubmit="return false;">
+ <div class="form-group">
+            <label for="text_input">Text Input:</label><br>
+            <textarea id="text_input" name="text_input" rows="4" cols="50"></textarea>
+        </div>
+ <button type="submit">Generate Audio</button>
+ </form>
+ <div id="output" class="output-section"></div>
+ <script>
+        const form = document.querySelector('form');
+ const outputDiv = document.getElementById('output');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/tts', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const audioBlob = await response.blob();
+                const audioUrl = URL.createObjectURL(audioBlob);
+ outputDiv.innerHTML = ''; // Clear previous output
+
+                // Display submitted text and audio on the UI
+ outputDiv.innerHTML = `
+ <h2>Generated Audio:</h2>
+ <audio controls src="${audioUrl}"></audio>
+ `;
+
+ // Optional: Display submitted text
+ // outputDiv.innerHTML += `<h2>Submitted Text:</h2><p>${document.getElementById('text_input').value}</p>`;
+
+            } catch (error) {
+                console.error('Error fetching audio:', error);
+                alert('An error occurred while fetching audio.');
+            }
+        });
+    </script>
+ </div>
+</body>
+</html>
