@@ -9,7 +9,6 @@ Server should run automatically when starting a workspace. To run manually, run:
 ./devserver.sh
 ```
 
-```js
 <a href="https://studio.firebase.google.com/import?url=https%3A%2F%2Fgithub.com%2Fmodiyagya%2FPersona-audio-agent%2Ftree%2Fmaster">
   <picture>
     <source
@@ -24,4 +23,3 @@ Server should run automatically when starting a workspace. To run manually, run:
       src="https://cdn.firebasestudio.dev/btn/open_blue_32.svg">
   </picture>
 </a>
-```
