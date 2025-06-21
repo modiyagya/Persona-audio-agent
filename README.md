@@ -10,6 +10,9 @@ export GEMINI_KEY=YOUR_KEY
 ./devserver.sh
 ```
 
+Video demo: https://www.loom.com/share/e9e8b8ad0540409ea01208b14d535c48 
+
+
 <a href="https://studio.firebase.google.com/import?url=https%3A%2F%2Fgithub.com%2Fmodiyagya%2FPersona-audio-agent%2Ftree%2Fmaster">
   <picture>
     <source
