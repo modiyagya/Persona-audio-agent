@@ -6,6 +6,7 @@ This is a minimal Flask API service starter based on [Google Cloud Run Quickstar
 
 Server should run automatically when starting a workspace. To run manually, run:
 ```sh
+export GEMINI_KEY=YOUR_KEY
 ./devserver.sh
 ```
 
